@@ -1,0 +1,162 @@
+<div class="personal-info-container">
+    <div class="main-personal-info">
+        <div class="left-side">
+            <div class="left-side-header">
+                <div class="button-mac">
+                    <img src="/assets/images/close-icon.png" class="button-icon">
+                </div>
+                <div class="button-mac yellow-button">
+                    <img src="/assets/images/subtract-icon.png" class="button-icon">
+                </div>
+                <div class="button-mac green-button">
+                    <img src="/assets/images/full-screen-icon.png" class="button-icon" (click)="fulllscreen()">
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item" *ngFor="let item of sideList">
+                    <div class="accordion-header" (click)="toggleAccordion(item)">
+                        <p class="title-beauty">{{ item.title }}</p>
+                    </div>
+                    <div class="accordion-content" [@accordionAnimation]="item.open ? 'open' : 'closed'">
+                        <ng-container *ngFor="let sub of item.content">
+                            <a class="subtitle-beauty" (click)="goTo(sub.link, item.link)">
+                                <img *ngIf="sub.icon" [src]="'assets/images/side-icon/' + sub.icon" class="subitem-icons">
+                                <p class="subitem-title">{{ sub.title }}</p>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="header-right-side">
+            </div>
+            <div class="right-side-main">
+                <div id="about" class="about-container">
+                    <div>
+                        <h1>AVNI KATIYAR</h1>
+                        <p class="about-text">
+                            I’m a B.Tech Computer Science Engineering student at PIEMR with a strong foundation in Java and frontend development using React.
+                            Passionate about building efficient, user-friendly applications, I enjoy solving real-world problems through code.
+                            With a constant drive to learn and grow, I’m eager to contribute to innovative projects and expand my skills in software
+                            development.
+                        </p>
+                        <a target="_blank" href="https://drive.google.com/file/d/1gUnMahj6vRwenOmmDukABZB1eq6Wmrlp/view?usp=drive_link">
+                            <button class="content-button">
+                                Download Resume
+                            </button>
+                        </a>
+                    </div>
+                    <img src="/assets/images/port.jpeg" class="about-image">
+                </div>
+                <div id="skills" class="box-container">
+                    <h4 class="box-headr">My Skills</h4>
+                    <div class="main-skills">
+                        <div class="skill-container" *ngFor="let item of skills">
+                            <div class="skill-detail" *ngIf="item.name !== 'Angular' && item.name !== 'Vue' && item.name !== 'Linux'">
+                                <img [src]="'/assets/images/skill-icons/' + item.icon" class="items-icon">
+                                <p class="item-name">{{ item.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="certifications" class="box-container">
+                    <h4 class="box-headr">My Certifications</h4>
+                    <div class="main-jobs">
+                        <div class="job-container">
+                            <div class="job-detail">
+                                <div class="job-title">
+                                    <img src="/assets/images/nvidia.png" class="items-logo">
+                                    <p class="item-name">NVIDIA </p>
+                                </div>
+                                <p>Fundamentals of Accelerated Computing with CUDA.</p>
+                            </div>
+                        </div>
+                        <div class="job-container">
+                            <div class="job-detail">
+                                <div class="job-title">
+                                    <img src="/assets/images/java.webp" class="items-logo">
+                                    <p class="item-name">Java OOPM</p>
+                                </div>
+                                <p>Certification in Java core and Java Advanced.</p>
+                            </div>
+                        </div>
+                        <div class="job-container">
+                            <div class="job-detail">
+                                <div class="job-title">
+                                    <img src="/assets/images/cloud.jpg" class="items-logo">
+                                    <p class="item-name">GOOGLE CLOUD</p>
+                                </div>
+                                <p>Innovating with google cloud AI.</p>
+                            </div>
+                        </div>
+                        <div class="job-container">
+                            <div class="job-detail">
+                                <div class="job-title">
+                                    <img src="/assets/images/skillup.png" class="items-logo">
+                                    <p class="item-name">SKILLUP</p>
+                                </div>
+                                <p>Natural Language Processing Certification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="projects" class="box-container">
+                    <h4 class="box-headr">My Projects</h4>
+                    <div class="main-projects">
+                        <div class="project-box">
+                            <div class="project-detail-container">
+                                <h3>Virtual Classroom</h3>
+                                <p>
+                                    A React-based web application simulating a virtual classroom environment with live chat, attendance, assignment uploads,
+                                    and discussion boards. Designed to enhance digital learning experiences.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="project-box">
+                            <div class="project-detail-container">
+                                <h3>AI Chatbot</h3>
+                                <p>
+                                    Built an AI-powered chatbot capable of answering student queries and providing assistance using NLP techniques.
+                                    Integrated with a React frontend and trained on educational datasets.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="uni" class="box-container">
+                    <h4 class="box-headr">My Educations</h4>
+                    <div class="main-uni">
+                        <div class="uni-container">
+                            <div class="uni-detail">
+                                <div class="uni-title">
+                                    <img src="/assets/images/piemr.png" class="items-logo">
+                                    <div class="uni-items">
+                                        <p class="item-name">Bachelor of Computer Engineering</p>
+                                        <p class="item-uni">PIEMR</p>
+                                    </div>
+                                </div>
+                                <p class="uni-date">October 2022 – Present</p>
+                            </div>
+                            
+                        </div>
+                        <form class="feedback-form" (ngSubmit)="onSubmit()">
+                            <label for="name">Name:</label>
+                            <input id="name" type="text" name="name" [(ngModel)]="name">
+                        
+                            <label for="email">Email:</label>
+                            <input id="email" type="email" name="email" [(ngModel)]="email">
+                        
+                            <label for="review">Review:</label>
+                            <textarea id="review" name="review" [(ngModel)]="review"></textarea>
+                        
+                            <button type="submit" class="content-button">Submit Feedback</button>
+                        </form>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
